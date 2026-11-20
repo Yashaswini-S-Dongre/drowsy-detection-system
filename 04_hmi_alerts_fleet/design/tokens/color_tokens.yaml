@@ -1,0 +1,25 @@
+# color_tokens.yaml
+# Automotive HMI colour design tokens
+# Source: Drowsiness Detection Design & Tech Stack document
+# "Color Psychology strictly applied"
+# Blue/Green for active/monitoring, Amber for Tier 1 & 2, Red for Tier 3
+
+monitoring:
+  green: '#10b981'   # active / normal monitoring state
+  blue:  '#3b82f6'   # system online indicator
+
+tier1_warning:
+  amber: '#f59e0b'   # Tier 1 — early warning (yawns, minor drifts)
+
+tier2_warning:
+  dark_amber: '#d97706'  # Tier 2 — moderate fatigue (eyelid drooping, erratic steering)
+
+tier3_critical:
+  red: '#ef4444'    # Tier 3 — critical danger (micro-sleep, severe drift)
+
+recovery:
+  cyan: '#06b6d4'   # Post-alert recovery state — graduated intervention protocol (PRD §3)
+
+background_dark: '#0a0a0a'   # dark UI during standard driving (zero distraction)
+
+font_primary: 'Inter'        # high-legibility sans-serif (2-second glanceability rule)

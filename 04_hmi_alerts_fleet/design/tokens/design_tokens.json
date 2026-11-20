@@ -1,0 +1,78 @@
+{
+  "_comment": "Design System Tokens — Driver Drowsiness Detection System HMI",
+  "_source": "synopsis Section 7, Design & Tech Stack document — glanceability rules",
+
+  "color": {
+    "background_dark":     { "value": "#0a0a0a",  "usage": "Idle dark screen (normal driving)" },
+    "surface_dark":        { "value": "#111827",  "usage": "Card and panel backgrounds" },
+    "surface_elevated":    { "value": "#1f2937",  "usage": "Elevated panels, status glyphs" },
+    "monitoring_green":    { "value": "#22c55e",  "usage": "Active monitoring indicator" },
+    "alert_amber":         { "value": "#f59e0b",  "usage": "Tier 1 & 2 alert: amber cluster notification" },
+    "alert_red":           { "value": "#ef4444",  "usage": "Tier 3 critical: pulsing red border" },
+    "text_primary":        { "value": "#f9fafb",  "usage": "Primary text on dark backgrounds" },
+    "text_secondary":      { "value": "#9ca3af",  "usage": "Secondary / metadata text" },
+    "text_on_amber":       { "value": "#1c1007",  "usage": "Text on amber alert surfaces" },
+    "text_on_red":         { "value": "#fff1f1",  "usage": "Text on red alert surfaces" },
+    "inactive":            { "value": "#374151",  "usage": "Inactive glyphs / disabled states" },
+    "degraded_indicator":  { "value": "#6b7280",  "usage": "Degraded sensor pathway indicator" }
+  },
+
+  "typography": {
+    "font_family": "Inter, system-ui, sans-serif",
+    "scale": {
+      "tier3_headline": { "size": "48px", "weight": "700", "line_height": "1.1",
+                          "usage": "Tier 3 full-screen warning message — must be readable at arm's length" },
+      "tier2_headline": { "size": "32px", "weight": "600", "line_height": "1.2",
+                          "usage": "Tier 2 prominent alert headline" },
+      "tier1_label":    { "size": "20px", "weight": "500", "line_height": "1.4",
+                          "usage": "Tier 1 cluster notification" },
+      "metric_value":   { "size": "24px", "weight": "600", "line_height": "1.0",
+                          "usage": "Numeric metric values in dev panel (EAR, PERCLOS, etc.)" },
+      "metric_label":   { "size": "11px", "weight": "400", "line_height": "1.4",
+                          "usage": "Metric labels under values" },
+      "body":           { "size": "14px", "weight": "400", "line_height": "1.5",
+                          "usage": "Body copy, consent dialog" }
+    }
+  },
+
+  "spacing": {
+    "xs":  "4px",
+    "sm":  "8px",
+    "md":  "16px",
+    "lg":  "24px",
+    "xl":  "40px",
+    "xxl": "64px"
+  },
+
+  "border_radius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "16px",
+    "pill": "999px"
+  },
+
+  "animation": {
+    "tier1_pulse_duration_ms":  1200,
+    "tier2_flash_duration_ms":   800,
+    "tier3_pulse_duration_ms":   600,
+    "transition_default_ms":     300,
+    "idle_to_alert_ms":          150,
+    "glanceability_target_s":      2,
+    "_note": "All animations designed so the alert message can be read in under 2 seconds"
+  },
+
+  "hmi_layout": {
+    "target_resolution": "1280x480",
+    "secondary_resolution": "1920x720",
+    "fps_target": 60,
+    "safe_zone_top_px": 32,
+    "safe_zone_sides_px": 48
+  },
+
+  "tier_map": {
+    "0": { "color": "background_dark",  "label": "",                                  "audio": "none",             "haptic": "none" },
+    "1": { "color": "alert_amber",      "label": "DROWSINESS DETECTED",               "audio": "none",             "haptic": "subtle_pulse" },
+    "2": { "color": "alert_amber",      "label": "MODERATE FATIGUE – TAKE A BREAK",   "audio": "chime",            "haptic": "strong_pulse" },
+    "3": { "color": "alert_red",        "label": "⚠ CRITICAL – PULL OVER NOW",        "audio": "alarm_continuous", "haptic": "continuous" }
+  }
+}
