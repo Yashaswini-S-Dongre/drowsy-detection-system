@@ -148,9 +148,7 @@ class TestPERCLOSTracker:
         assert result < 0.05, f"PERCLOS={result} after eyes open should be near 0"
 
 
-# ─────────────────────────────────────────────
 # Blink detector tests
-# ─────────────────────────────────────────────
 
 class TestBlinkDetector:
     def test_no_blink_while_open(self):
@@ -187,9 +185,7 @@ class TestBlinkDetector:
             assert rate >= 0.0
 
 
-# ─────────────────────────────────────────────
 # MAR / Yawn tests
-# ─────────────────────────────────────────────
 
 class TestComputeMAR:
     def test_open_mouth_high_mar(self):
@@ -229,9 +225,7 @@ class TestYawnDetector:
         assert active, "Yawn should be active after sustained open mouth"
 
 
-# ─────────────────────────────────────────────
 # Gaze tests
-# ─────────────────────────────────────────────
 
 class TestOffRoadGazeTracker:
     def test_forward_gaze_zero_ratio(self):
@@ -247,9 +241,7 @@ class TestOffRoadGazeTracker:
         assert ratio > 0.95
 
 
-# ─────────────────────────────────────────────
 # Head pose / nod tests
-# ─────────────────────────────────────────────
 
 class TestNodDetector:
     def test_no_nod_for_stable_pitch(self):
@@ -274,9 +266,7 @@ class TestNodDetector:
         assert not result, "Gradual pitch change should not trigger nod"
 
 
-# ─────────────────────────────────────────────
 # EAR Calibrator tests
-# ─────────────────────────────────────────────
 
 class TestEARCalibrator:
     def test_calibration_completes(self):
