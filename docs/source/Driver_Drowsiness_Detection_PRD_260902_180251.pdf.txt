@@ -1,0 +1,102 @@
+
+--- Page 1 ---
+PRODUCT REQ UIREMENT S DOCUMENT
+Driver Drowsiness
+Detection System
+Multi-Modal Alertness Evaluation Architecture
+Version: 1.0 (Draft)
+Date: September 2, 2026
+Status: Approved for Technical Review
+Page 1 of 5
+
+--- Page 2 ---
+1. Executive Summary
+This Product Requirements Document (PRD) outlines the system specifications and technical
+pathways for a state-of-the-art Driver Drowsiness Detection System. As driver fatigue remains a
+leading cause of traffic accidents worldwide, this project aims to develop a robust, multi-layered
+monitoring platform.
+By synergizing non-intrusive observation techniques with advanced physiological data and vehicle-
+based telematics, the system will accurately evaluate alertness in real-time, proactively alerting the
+driver and potentially triggering automated safety protocols to prevent accidents.
+2. Technical Monitoring Pathways
+To establish a highly reliable evaluation of driver alertness, the system integrates three distinct
+technical pathways. This multi-layered approach ensures redundancy and minimizes false positives
+by corroborating data across behavioral, mechanical, and physiological domains.
+2.1 Behavioral Monitoring
+This non-intrusive pathway utilizes in-cabin infrared (IR) cameras and machine learning-driven
+computer vision to actively map driver facial cues and head dynamics regardless of ambient
+lighting conditions.
+Eye and Eyelid Tracking
+Monitors blink frequency, gaze shifts away from the windshield, and prolonged eye closure
+duration (PERCLOS). These metrics are the primary leading indicators utilized to spot fading
+attention spans and micro-sleep events.
+Yawning and Facial Cues
+Tracks mouth opening metrics, jaw movements, and overall facial contortions. By analyzing
+these cues, the system identifies frequent or sustained yawning as an early, pre-critical sign of
+physical fatigue.
+Page 2 of 5
+
+--- Page 3 ---
+Head Posture
+Measures head inclination and sudden tilting angles. The computer vision model maps the
+driver's head posture over time to detect gradual drooping or the sudden dropping motion
+characteristic of a driver nodding off.
+2.2 Vehicle-Based Monitoring
+This pathway analyzes the vehicle's dynamic behavior and the driver's interaction with operational
+controls. By evaluating how the vehicle is being driven, the system can infer the cognitive state and
+responsiveness of the operator.
+Steering Patterns
+Analyzes micro-corrections and steering wheel inputs via integrated electric power steering
+(EPS) sensors. A marked decrease in normal micro-corrections, followed by sudden, erratic
+steering inputs, is highly correlated with drowsy driving behavior.
+Lane Position
+Utilizes forward-facing Advanced Driver Assistance Systems (ADAS) cameras to constantly
+monitor road lane markings. It detects dangerous driving patterns such as sudden vehicle
+drifting, weaving, or failure to maintain a consistent lane center over time.
+2.3 Physiological Measurements
+For applications requiring maximum precision (such as commercial trucking or autonomous vehicle
+hand-off phases), the system incorporates direct, intrusive biometric tracking to gauge core
+physiological fatigue levels.
+Page 3 of 5
+
+--- Page 4 ---
+Brain and Heart Activity
+Relies on advanced wearable devices or sensors deeply integrated into the seat and steering
+wheel. Key tracking parameters include:
+Electroencephalogram (EEG): Monitors brain waves to detect the neurological transition
+from wakefulness to drowsiness (e.g., shifts from beta to theta waves).
+Electrocardiogram (ECG) & Heart Rate: Records heart rate variability (HRV) and ECG
+signals, which demonstrate specific deterioration patterns as the body's autonomic nervous
+system succumbs to fatigue.
+3. Intervention Protocol
+Upon detection of drowsiness through the aforementioned pathways, the system must employ a
+graduated escalation matrix to regain driver focus safely.
+Escalation Tiers
+Tier 1 (Early Warning - Yawns, Minor Drifts): Gentle visual notification on the digital
+cluster and subtle haptic feedback (seat or steering wheel vibration).
+Tier 2 (Moderate Fatigue - Eyelid drooping, Erratic steering): Prominent auditory
+chimes, tightening of the seatbelt, and mandatory dashboard prompts to take a rest break.
+Tier 3 (Critical Danger - Micro-sleep, Severe drifting): High-decibel continuous alarms,
+automated hazard light activation, and triggering of the vehicle's Emergency Stop Assist
+(ESA) to safely pull the vehicle over.
+4. Core Requirements & Constraints
+Processing Latency: All image recognition (Behavioral) and telemetry processing (Vehicle-
+based) must occur on the local edge-compute module with a total latency of less than 100ms.
+Data Privacy: All raw video feeds and physiological telemetry must be processed locally and
+overwritten continuously. No raw biometric data shall be transmitted to external servers without
+explicit, opt-in consent from the user.
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+Page 4 of 5
+
+--- Page 5 ---
+Sensor Redundancy: The system must remain operational even if one sensor pathway is
+compromised (e.g., camera blinded by direct sunlight), falling back onto Steering Patterns and
+Lane Position metrics.
+• 
+Page 5 of 5

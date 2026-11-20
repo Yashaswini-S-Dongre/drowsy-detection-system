@@ -1,0 +1,89 @@
+
+--- Page 1 ---
+Design & Technology Stack
+UI/UX and Engineering Architecture for the Drowsiness Detection System
+To ensure the Driver Drowsiness Detection System provides a seamless, professional, and
+highly responsive user experience, we have carefully selected a robust design and
+technology stack. The primary goal is to deliver an in-car Human-Machine Interface (HMI)
+that is glanceable, minimizes cognitive load, and operates with near-zero latency.
+1. Design Stack (UI / UX & HMI)
+The design stack is tailored for automotive interface design, focusing on high-contrast
+visuals, rapid prototyping for driver testing, and smooth motion graphics for alert
+escalations.
+Interface Design & Wireframing
+FIGMA • SKETCH • FIGJAM
+Figma will serve as the central source of truth for all UI components, wireframes, and
+design systems. It enables collaborative, real-time feedback loops between the UX
+researchers and stakeholders. FigJam will be utilized for user journey mapping and
+flowcharts.
+Automotive HMI & Prototyping
+QT DESIGN STUDIO • PROTOPIE
+Unlike standard web apps, in-car displays require specialized HMI tools. Qt Design Studio
+allows designers to create UI components that seamlessly translate into C++ for the
+engineering team. ProtoPie will be used for advanced hardware-integrated prototyping,
+testing steering wheel inputs and physical buttons against digital UI responses.
+Motion & Interaction Design
+AFTER EFFECTS • LOTTIEFILES
+CONFIDENTIAL - INTERNAL USE ONLY
+Page 1 of 3
+
+--- Page 2 ---
+For system alerts (e.g., pulsing red borders during Tier 3 interventions) and micro-
+interactions, After Effects will be used. Animations will be exported as lightweight JSON
+files via Lottie to ensure they run smoothly on embedded hardware without draining
+compute resources.
+User Research & Usability Testing
+MAZE • DOVETAIL
+Maze will facilitate unmoderated remote usability testing of the dashboard layout. Dovetail
+will act as the repository for user testing recordings and driver feedback, helping identify
+pain points in the intervention escalation protocols.
+2. Technology Stack (Engineering Architecture)
+The technology stack is divided into Edge computing for zero-latency AI processing,
+embedded HMI development for the visual interface, and Cloud infrastructure for fleet-level
+telemetry and updates.
+Front-End HMI (In-Vehicle Display)
+C++ • QT/QML • WEBGL
+The dashboard UI will be built using Qt and QML (Qt Modeling Language) powered by C++.
+Qt is the automotive industry standard, providing rendering at 60+ FPS on embedded
+Linux hardware, ensuring that visual alerts trigger instantaneously without lag.
+Edge AI & Computer Vision (Core Engine)
+PYTHON • OPENCV • TENSORFLOW LITE
+The facial recognition, PERCLOS calculation, and posture mapping will be developed in
+Python using OpenCV for image processing. The trained neural networks will be converted
+to TensorFlow Lite to optimize for edge deployment, ensuring inference times remain
+under the strict 100ms requirement.
+Embedded Systems & Hardware OS
+EMBEDDED LINUX (YOCTO) • ROS 2
+CONFIDENTIAL - INTERNAL USE ONLY
+Page 2 of 3
+
+--- Page 3 ---
+The system will run on a custom Embedded Linux distribution built via the Yocto Project.
+The Robot Operating System (ROS 2) will act as the middleware, managing real-time data
+communication between the IR cameras, CAN bus (for steering/lane data), and the UI.
+Backend, Cloud & Telemetry (Opt-in)
+AWS IOT CORE • NODE.JS • INFLUXDB
+For commercial fleet management (where users opt-in to telemetry), AWS IoT Core will
+handle secure, bi-directional MQTT communication. Telemetry data (frequency of drowsy
+events) will be stored in InfluxDB, a highly efficient time-series database, and served to
+fleet managers via a Node.js REST API.
+3. Core UI/UX Automotive Principles
+Developing for an automotive environment requires strict adherence to safety-critical design
+philosophies:
+Glanceability (The 2-Second Rule): The driver must be able to comprehend the
+system's status or alert within a 2-second glance. Typography will utilize high-legibility
+sans-serif fonts (e.g., Inter or a custom automotive font).
+Low Cognitive Load: The system will remain entirely invisible (dark UI) during standard
+driving. It will only illuminate or present information when an intervention is required,
+avoiding unnecessary driver distraction.
+Multisensory Escalation: Visual UI is not enough. The UX relies on synchronized
+auditory (chimes) and haptic (seat vibration) feedback. The visual UI acts as the anchor,
+but the experience is multi-modal.
+Color Psychology strictly applied: Blue/Green for active/monitoring state, Yellow/
+Amber for early warnings (Tier 1 & 2), and high-contrast Red for critical danger (Tier 3).
+• 
+• 
+• 
+• 
+CONFIDENTIAL - INTERNAL USE ONLY
+Page 3 of 3

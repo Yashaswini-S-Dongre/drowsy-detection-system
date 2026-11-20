@@ -1,0 +1,977 @@
+
+--- Page 1 ---
+ 
+Dept of AI & ML, BMSIT&M 
+2026 
+ 
+ 
+BMS INSTITUTE OF TECHNOLOGY AND MANAGEMENT 
+(An Autonomous Institute affiliated to VTU, Belagavi, Approved by AICTE New Delhi) 
+Yelahanka, Bengaluru 560064 
+Department of Artificial Intelligence and Machine Learning 
+ 
+Mini Project Synopsis - BAI506 
+Academic Year 2026-27 
+Section and 
+Batch No: 
+D1 
+Guide Name: 
+DR. MAYURI K P 
+Submission Date: 
+16 Sep 2026 
+Mini Project Title 
+DROWSY DETECTION SYSTEM 
+Sl No 
+USN 
+Name 
+1 
+1BY24AI194 
+YASHASWINI S DONGRE 
+2 
+1TD24AI089 
+KISHOR J 
+3 
+1TD24AI091 
+KRUTHI R 
+4 
+1TD24AI165 
+SHREYAS BIDIKAR 
+Project Category 
+Research, Environmental and Societal, Product development, 
+Industrial Live Project, Application Project, Case Study 
+ 
+ 
+Signature of Guide 
+
+--- Page 2 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+1 
+Initial Project Proposal: 
+Driver drowsiness represents a major safety concern as it can reduce a driver’s attention, reaction time, 
+and ability to control a vehicle effectively. The Driver Drowsiness Detection System   Multi-Modal 
+Alertness Evaluation Architecture is designed as an intelligent safety system that continuously monitors 
+the driver’s alertness and provides timely warnings to reduce the risks associated with fatigued driving. 
+The proposed system employs a multi-modal approach that integrates behavioral monitoring, vehicle-
+based monitoring, and optional physiological measurements. 
+For behavioral monitoring, an infrared camera and computer vision techniques are used to analyze facial 
+and head characteristics under varying lighting conditions. Indicators such as eye-blink frequency, 
+prolonged eye closure, PERCLOS, gaze direction, yawning, facial movements, and head posture are 
+continuously evaluated to identify early signs of fatigue and micro-sleep events. The vehicle-based 
+monitoring module evaluates steering behavior and lane position. Steering-wheel micro-corrections, 
+sudden steering movements, vehicle drifting, weaving, and inconsistent lane positioning are analysed as 
+additional indicators of reduced driver alertness. For applications requiring greater accuracy, physiological 
+parameters such as EEG, ECG, and heart-rate variability can provide direct information about the driver’s 
+cognitive state. 
+ 
+ 
+1.Introduction:   
+Driver drowsiness remains a critical factor in traffic accidents, severely impairing a driver’s attention, 
+reaction time, and vehicle control capabilities [10], [13]. Research indicates that drowsy driving 
+contributes to a substantial proportion of road crashes globally, with studies reporting that between 10% 
+and 45% of serious accidents involve driver fatigue as a contributing factor [11], [12]. The consequences 
+of fatigued driving are comparable in severity to those of alcohol-impaired driving, making the automated 
+detection of drowsiness a matter of considerable public safety interest. 
+To mitigate these risks, the Driver Drowsiness Detection System   Multi-Modal Alertness Evaluation 
+Architecture provides continuous, non-intrusive monitoring of the driver across three complementary 
+technical pathways: behavioural monitoring through computer vision, vehicle-based monitoring through 
+sensor telemetry, and physiological monitoring through optional biometric wearables. By synthesising 
+data from these independent pathways, the system achieves a level of accuracy and redundancy that no 
+
+--- Page 3 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+2 
+single-sensor approach can offer [1], [10]. The architecture leverages localised edge processing to 
+minimise latency and protect user privacy, ensuring that raw biometric data is not transmitted to external 
+servers without explicit consent [2], [16]. 
+Upon detecting signs of fatigue, the system initiates a tiered, multi-sensory intervention protocol utilising 
+visual, haptic, and auditory feedback to restore driver focus [1], [6]. This graduated response prevents 
+both unnecessary alarm fatigue and delayed intervention, adapting the intensity of the alert to the severity 
+of the drowsiness event. The system is designed for deployment in real driving environments, addressing 
+the ecological validity gap identified across the surveyed literature [5], [13]. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Source :Survey on State-of-the-Art Drowsiness Detection Techniques 
+ 
+1.1 Motivation 
+The primary motivation for this work is the enhancement of road safety through the proactive mitigation 
+of fatigue-related accidents [13], [16]. Diminished alertness leads to delayed reaction times and loss of 
+vehicle control, necessitating a system capable of identifying the earliest physiological and behavioural 
+indicators of drowsiness   before a critical event occurs. Vehicle-based cues, such as irregular steering 
+patterns and unintended lane deviations, are among the most reliable non-intrusive signals and form a core 
+pathway in this architecture [5], [6]. 
+ 
+
+--- Page 4 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+3 
+Furthermore, existing safety mechanisms often rely on binary, intrusive alarms that activate only after a 
+significant lapse has already occurred. This project introduces a graduated escalation matrix tailored to 
+the severity of the detected drowsiness, ranging from subtle haptic feedback to critical automated safety 
+interventions [1], [2]. The deployment of a localised processing architecture addresses the persistent gap 
+between laboratory-tested systems and real-world embedded deployment, particularly the strict sub-100 
+ms latency requirement identified in the literature [3], [16]. The incorporation of wearable and embedded 
+physiological sensing further broadens the system’s capability beyond purely vision-based detection, 
+improving overall robustness [17], [19], [20]. 
+ 
+ 
+2.Literature Survey: 
+A total of sixteen recent research papers were reviewed, covering the three technical pathways adopted in 
+this project – behavioral monitoring, vehicle-based monitoring, and physiological monitoring. Table 1 
+summarizes the technical pathway, key metric/algorithm, reported accuracy, and relevance of each 
+reviewed work to the proposed system. Full bibliographic details for each reference [1]–[21] are given in 
+the References section. 
+Table 1. Summary of Literature Survey 
+Ref. 
+Technical 
+Pathway 
+Key Metric / 
+Algorithm 
+Accuracy / Results 
+Relevance to Proposed 
+System 
+[1] 
+Multi-Modal 
+(Behavioural & 
+Vehicle-Based) 
+EAR, MAR, Vision 
+Transformer (ViT-
+B/16), CNN, LSTM, 
+RAG 
+99% accuracy, 1.00 
+ROC-AUC 
+(drowsiness); 97% 
+accuracy (driving 
+style) 
+Validates the multi-
+layered Behavioural + 
+Vehicle-Based 
+architecture; penalty-
+based risk scoring 
+supports the Tier 1/2/3 
+escalation protocol. 
+
+--- Page 5 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+4 
+[2] 
+Behavioural 
+Monitoring 
+(Edge/IoT) 
+YOLOv10, F-LSNN 
+(Fuzzy Logic + LSTM), 
+emotion-detection filter 
+98.63% accuracy 
+on DDS dataset 
+Maps to the local Edge 
+AI module (Jetson Nano-
+class hardware); the 
+emotion filter helps keep 
+processing latency under 
+100 ms; 5-level scale 
+aligns with the 3-Tier 
+protocol. 
+[3] 
+Physiological 
+Monitoring (EEG) 
+EEG relative alpha-
+band power (Fp1, Fp2, 
+O1, O2), lightweight 
+CNN, OpenViBE 
+91.56% accuracy 
+Supports the 
+Physiological pathway 
+for high-precision 
+evaluation during 
+autonomous hand-off 
+phases; lightweight CNN 
+suits edge deployment. 
+[4] 
+Behavioural 
+Monitoring 
+YOLOv8, EAR, MAR, 
+composite Alertness 
+Index (AI) 
+0.92 average F1-
+score 
+Reinforces the core 
+computer-vision stack 
+(Python/OpenCV, 
+EAR/MAR); AI metric 
+offers a quantitative 
+baseline for Tier 1/2 
+triggers. 
+[5] 
+Vehicle-Based 
+Monitoring 
+Steering Wheel Angle 
+(SWA), approximate 
+entropy, dynamic time 
+warping 
+78.01% online 
+detection accuracy 
+Confirms steering-pattern 
+analysis as a reliable 
+fallback pathway when 
+camera-based sensing is 
+compromised. 
+[6] 
+Vehicle-Based 
+Monitoring 
+Dual control-theoretic 
+scheme, lateral vehicle 
+control, ANOVA 
+Effective 
+identification of 
+drowsiness and 
+prevention of lane-
+departure accidents 
+Validates EPS-sensor-
+based drowsiness 
+detection combined with 
+partial automated 
+steering and auditory 
+warning. 
+
+--- Page 6 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+5 
+[7] 
+Vehicle-Based 
+Monitoring 
+CAN bus signal-pattern 
+analysis, SVM with 
+Gaussian RBF kernel 
+Reduced false 
+alarms; robust 
+classification of 
+driving-safety 
+patterns 
+Supports multi-modal 
+data fusion so the system 
+does not rely on a single 
+potentially faulty signal. 
+[8] 
+Vehicle-Based / 
+Behavioural 
+Monitoring 
+IR camera, PERCLOS, 
+Viola-Jones face/eye 
+detection 
+Robust real-time 
+PERCLOS 
+estimation under 
+real driving 
+conditions 
+Validates FOV cabin-
+camera placement and 
+confirms PERCLOS as a 
+core fallback indicator 
+alongside lane-position 
+monitoring. 
+[9] 
+Physiological 
+Monitoring (EEG) 
+Empirical Mode 
+Decomposition (EMD) 
++ energy spectrum, 
+PSO-H-ELM classifier 
+83.12% accuracy 
+(~4% gain over 
+KNN/SVM) 
+Provides an algorithmic 
+foundation for an on-
+board, real-time EEG-
+based fatigue alarm. 
+[10] 
+Physiological 
+Monitoring (Multi-
+sensor review) 
+EEG frequency bands, 
+GSR, SpO2, PAT, HRV 
+(LF/HF), skin 
+temperature 
+EEG 93.87%; GSR 
+100%; ECG+EEG 
+up to 97% 
+Provides a multi-
+biomarker basis for 
+minimising false 
+positives; notes 
+flexibility trade-offs of 
+in-ear EEG / seatbelt 
+ECG. 
+[11] 
+Physiological 
+Monitoring 
+(Scoping review) 
+EEG, ECG, EOG, heart 
+rate, PPG/rPPG, GSR 
+PPG ~94% 
+accuracy; ECG 
+~98% accuracy 
+Confirms higher 
+reliability of 
+physiological signal 
+fusion for the optional 
+Physiological pathway. 
+[12] 
+Physiological 
+Monitoring 
+(Systematic review) 
+Bio-signal fusion across 
+EEG/ECG/EOG-based 
+systems 
+Sensor fusion 
+improves detection 
+accuracy 
+Confirms low-latency 
+benefits and guides 
+selection among 
+multimodal physiological 
+devices. 
+[13] 
+Behavioural 
+Monitoring 
+(Review) 
+Eye closure, blink rate, 
+yawning, facial 
+Meta-analysis of 25 
+papers: CNN 
+Confirms behavioural, 
+non-invasive measures as 
+
+--- Page 7 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+6 
+expression; SVM, CNN, 
+HMM 
+outperformed SVM 
+and HMM 
+reliable triggers for alarm 
+escalation. 
+[14] 
+Behavioural 
+Monitoring 
+68-point facial 
+landmarks, new face-
+tracking algorithm 
+(DriCare) 
+Improved facial-
+tracking accuracy 
+over prior 
+algorithms 
+Supports eye/eyelid and 
+mouth-status recognition 
+based on landmark 
+width/height and blink 
+frequency. 
+[15] 
+Behavioural 
+Monitoring 
+(Contact-free) 
+PERCLOS via iris-
+region extraction, 
+evaluated on YawDD 
+dataset 
+PERCLOS value 
+consistently lower 
+when alert than 
+when drowsy 
+Provides early, pre-
+critical validation of 
+PERCLOS as the 
+primary leading indicator 
+of micro-sleep. 
+[16] 
+Behavioural 
+Monitoring (CV + 
+Deep Learning) 
+Eye-blink pattern 
+analysis, EAR, facial 
+landmarks, yawning 
+correlation 
+95.8% drowsy-eye 
+accuracy; 97% 
+open-eye accuracy 
+Validates IR/landmark-
+based eye tracking and 
+correlation between 
+yawning and eye closure 
+used in the behavioural 
+pathway. 
+[17] 
+Physiological 
+Monitoring (EEG) 
+K-means, pulse 
+oximetry 
+Real-time eye-blink 
+analysis achieves 
+robust drowsiness 
+detection; operates 
+within 100 ms on 
+standard hardware. 
+Tested in controlled 
+indoor conditions; single-
+modality lacks 
+redundancy; 
+physiological/vehicle 
+cues absent. 
+[18] 
+Physiological 
+Monitoring (CNN) 
+RRV, TEDD index 
+90% sensitivity 
+Computational cost 
+limits direct edge 
+deployment without 
+optimisation; limited 
+real-road dataset 
+diversity. 
+[19] 
+Physiological 
+Monitoring 
+Seatbelt optical & MI 
+sensors 
+Effective tracking 
+Validates integrated 
+sensors. 
+
+--- Page 8 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+7 
+[20] 
+Physiological 
+Monitoring 
+IR-UWB radar, FFT 
+Accurate vital 
+extraction 
+EEG acquisition remains 
+obtrusive; fusion requires 
+synchronised multi-
+modal data hard to 
+guarantee in real 
+vehicles. 
+[21] 
+Physiological 
+Monitoring 
+CW Doppler radar 
+82.5% accuracy 
+Contactless physiological 
+metric gathering. 
+ 
+ 
+ 
+ 
+
+--- Page 9 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+8 
+2.1 Limitations of Existing Systems 
+a) Environmental Sensitivity: Illumination changes, sunglasses, head rotation, and varying facial 
+structures degrade camera-based PERCLOS and EAR/MAR accuracy [4], [8], [14], [15]. 
+b) Wearable Intrusiveness: High-accuracy physiological monitors (EEG/ECG) impose severe user 
+discomfort, wearable burden, and posture/perspiration sensitivity [9], [10], [11], [12], [17]. 
+c) Ecological Validity Gap: Laboratory and simulator tests fail to capture real-world non-linearity and 
+noise, causing significant performance degradation on actual roads [3], [5], [9], [12], [13]. 
+d) Single-Sensor Vulnerability: Single-modality architectures lack fallback redundancy, leading to 
+failures from sunlight, road vibrations, or normal steering inputs [7], [11], [12], [13], [14]. 
+e) Binary/Delayed Alarms: Binary threshold warnings trigger alert fatigue and miss early, low-effort 
+intervention windows for mild-to-moderate fatigue [6], [13]. 
+f) High Computational Cost: Advanced deep learning models (ViTs, CNNs) exceed sub-100 ms real-
+time inference limits on standard embedded automotive hardware [1], [2], [16], [18]. 
+g) Privacy & Security Risks: Cloud-based transmission of raw biometric data violates modern data 
+protection regulations (GDPR) and introduces network latency/failure risks [2], [16]. 
+2.2 Outcome of the Literature Survey 
+• 
+Multi-Modal Fusion: Combines behavioural, vehicular, and physiological streams using dynamic 
+attention weighting to eliminate single-sensor dependency [20]. 
+• 
+Edge-First Architecture: Leverages TensorFlow Lite quantization, ROS 2, and Embedded Linux 
+for on-device processing, guaranteeing sub-100 ms latency and complete data privacy [2], [3], 
+[16]. 
+• 
+Graduated Three-Tier Intervention: Replaces binary alarms with a three-stage escalation matrix 
+(visual/haptic → auditory → continuous alarms/Emergency Stop Assist) to prevent alert fatigue 
+[6], [13]. 
+
+--- Page 10 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+9 
+• 
+Non-Intrusive Design: Treats physiological sensors as optional enhancements rather than 
+mandatory prerequisites, enabling deployment via standard IR cameras and vehicle sensors [9], 
+[10], [11], [17]. 
+• 
+Real-World Validation: Prioritizes real-road robustness, adaptive CAN bus thresholds, and 
+graceful handling of missing/degraded data streams [5], [6], [11], [12], [13]. 
+ 
+ 
+ 
+3.Problem Statement: 
+Every year, a large number of road accidents occur because drivers fall asleep or lose focus behind the 
+wheel. The problem is not just that people drive while tiredvit is that most existing detection systems only 
+raise an alarm after the driver has already drifted out of lane or missed a brake. By that point, the window 
+to safely respond has nearly closed [10], [13]. What is needed is a system that can read the early signs of 
+drowsiness and warn the driver while there is still enough time and attention to act. 
+Current solutions each solve only part of this problem. Camera systems stop working well in low light or 
+when the driver wears sunglasses [14], [15]. Steering-based sensors cannot tell the difference between 
+drowsiness and a genuinely sharp corner [5], [6]. EEG and heart-rate monitors are the most accurate but 
+require the driver to wear hardware that most people simply will not use on a daily commute [9], [11]. 
+This project addresses the gap by combining all three sources of information   face and eye data, vehicle 
+behaviour, and optional physiological signals so that the system keeps working reliably even when one 
+sensor pathway is blocked or unavailable. Alerts are graduated across three levels of severity, matching 
+the response to how drowsy the driver actually is, rather than triggering a single loud alarm that drivers 
+quickly learn to ignore [1], [2], [16]. 
+ 
+ 
+ 
+ 
+ 
+
+--- Page 11 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+10 
+3.1 Objectives: 
+1. To monitor driver drowsiness using signs such as eye closure, blinking, yawning, gaze, and head 
+movements. 
+2. To improve drowsiness detection using driver behaviour and driving conditions. 
+3. To provide visual, sound, and vibration alerts based on drowsiness levels. 
+4. To enable timely drowsiness detection and alerts for safer driving. 
+ 
+ 
+4.Proposed Methodology: 
+The proposed Driver Drowsiness Detection System uses a multi-modal architecture to continuously 
+evaluate the driver's alertness in real time. The methodology combines behavioural monitoring, vehicle-
+based monitoring, and physiological monitoring to improve detection reliability and reduce false positives. 
+ 
+1.Data Acquisition 
+An in-cabin infrared (IR) camera facilitates continuous observation of the driver’s facial features and head 
+dynamics across varying ambient lighting conditions [8], [16]. The IR camera is positioned to maintain a 
+stable field of view of the driver’s face irrespective of daytime or night-time operating conditions. 
+Concurrently, vehicle telematics are captured via electric power steering (EPS) sensors and ADAS 
+cameras mounted forward-facing to monitor steering wheel angle and lane positioning in real time [5], 
+[7]. For applications requiring higher accuracy   such as commercial trucking or automated hand-off 
+phases   optional wearable or seat/steering-wheel-integrated sensors collect electroencephalographic 
+(EEG) and electrocardiographic (ECG) signals to supplement the non-intrusive monitoring pathways [9], 
+[10], [17]. 
+2. Behavioural Analysis 
+Facial data is processed via Python and OpenCV pipelines to extract key alertness metrics. The system 
+calculates eye-blink frequency, gaze deviation, and the Percentage of Eye Closure (PERCLOS) to identify 
+lapses in attention and early micro-sleep events [14], [15]. MediaPipe Face Mesh and Dlib-based 68-point 
+
+--- Page 12 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+11 
+facial landmark detection are used to robustly locate eye and mouth regions across varying head 
+orientations [16]. Additional physical signs of fatigue are quantified by tracking the frequency and 
+duration of yawning events using the Mouth Aspect Ratio (MAR), as well as gradual head drooping via 
+head pose estimation [4], [18]. These combined cues provide the earliest detectable behavioural indicators 
+of drowsiness with a processing latency target of less than 100 milliseconds. 
+3. Vehicle Behaviour Analysis 
+The driver’s mechanical interaction with the vehicle serves as a secondary monitoring pathway. The 
+system analyses steering wheel micro-corrections and the approximate entropy of steering wheel angle 
+(SWA) time series to detect erratic control patterns characteristic of drowsy driving [5]. Dynamic time 
+warping distance between the current steering angle feature series and reference ‘awake’ and ‘drowsy’ 
+templates is used as the online classification criterion. ADAS camera inputs are simultaneously evaluated 
+using lane-marker tracking algorithms to identify dangerous driving patterns such as sudden vehicle 
+drifting, weaving, and loss of consistent lane-centre maintenance [6], [7]. Adaptive threshold mechanisms 
+applied to CAN Bus signals accommodate individual driving styles and varying road geometries [7]. 
+4. Physiological Analysis 
+When active, the physiological monitoring layer evaluates autonomic nervous system state and 
+neurological degradation. Wearable or seat-integrated sensors track EEG frequency band power 
+specifically the theta-to-alpha ratio, which increases markedly as the brain transitions from alert 
+wakefulness toward drowsiness and ECG-derived heart-rate variability (HRV) to establish high-precision 
+fatigue levels [9], [11], [12]. Behind-the-ear EEG electrodes, processed via embedded TinyML neural 
+networks, offer a minimally intrusive option for EEG acquisition suitable for driver monitoring [17]. 
+Multimodal CNN-LSTM architectures with attention-based fusion of visual and EEG streams have been 
+demonstrated to outperform single-modality approaches and serve as the reference model for the 
+physiological fusion layer [20]. This maximises detection accuracy in safety-critical applications while 
+complementing the non-intrusive behavioural and vehicle-based pathways. 
+
+--- Page 13 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+12 
+5. Multi-Modal Decision Making and Intervention 
+Data streams from behavioral, vehicular, and physiological pathways are fused to mitigate false-positive 
+detections and ensure system redundancy if a single sensor is compromised [1], [11]. The classified 
+drowsiness level dictates the execution of a three-tier escalation protocol: 
+• 
+Tier 1: Visual notifications and subtle haptic feedback (steering wheel vibration) for early signs 
+of fatigue [1], [4]. 
+• 
+Tier 2: Prominent auditory alarms, seatbelt tightening, and a dashboard rest-break prompt for 
+moderate fatigue [2], [6]. 
+• 
+Tier 3: High-decibel continuous alarms, hazard light activation, and triggering of the vehicle's 
+Emergency Stop Assist for critical micro-sleep events [1], [2]. 
+ 
+6. Edge-Based Processing 
+The core AI and computer-vision processing is performed locally using Python, OpenCV, and TensorFlow 
+Lite. TensorFlow Lite provides efficient model inference on embedded hardware, enabling the trained 
+neural networks including the drowsiness classifier and the optional physiological fusion model to execute 
+within the strict sub-100 ms latency budget [3], [16]. The embedded platform runs a custom Yocto-based 
+Embedded Linux distribution, with ROS 2 serving as middleware to manage real-time communication 
+between IR cameras, CAN Bus interfaces (for EPS and lane data), wearable sensor bridges, and the HMI 
+display. 
+ 
+7. Alert Display and User Interface 
+The driver’s alerts are presented through an automotive HMI developed using C++, Qt/QML, and WebGL, 
+rendering at 60+ FPS on embedded Linux hardware. The interface adheres to the 2-second glanceability 
+principle: only high-legibility sans-serif typography and a pre-defined colour scheme Blue/Green for 
+monitoring state, Amber for Tier 1 and Tier 2 warnings, and high-contrast Red for Tier 3 critical alerts are 
+used. The display remains entirely dark during normal driving to minimise distraction. Alert animations 
+are exported as lightweight Lottie JSON files to ensure smooth rendering without draining compute 
+resources. 
+ 
+
+--- Page 14 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+13 
+ 
+8. Data Privacy and Reliability 
+Raw video and physiological information are processed locally and continuously overwritten. Raw 
+biometric data is not intended to be transmitted externally without explicit user consent. Sensor 
+redundancy ensures that the system can fall back to other available measurements if one sensor pathway 
+is compromised. 
+ 
+Behavioral Features:  
+• Eye blink rate (EAR) 
+• PERCOLAS 
+• Mouth Aspect Ratio (MAR) 
+• Gaze Deviation 
+• Head Position Estimation 
+Vehicle Features 
+• Steering wheel angle 
+ 
+Physiological Features 
+• EEG Theta/Alpha ratio 
+• ECG Heart Rate Variability
+ 
+ 
+ 
+
+--- Page 15 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+14 
+5.System Requirement Specifications (Functional & Non-Functional) 
+ 
+1. 
+Functional Requirements 
+• Driver Monitoring: The system shall continuously monitor the driver's face, eyes, and head 
+movements using an in-cabin infrared camera. 
+• Drowsiness Detection: It shall identify signs of drowsiness such as prolonged eye closure, 
+frequent blinking, yawning, gaze deviation, and abnormal head posture. 
+• Vehicle Monitoring: The system shall analyse steering behaviour and lane position to detect 
+irregular steering, drifting, weaving, and inconsistent lane control. 
+• Multi-Modal Analysis: Behavioural, vehicle-based, and optional physiological data shall be 
+combined to improve the reliability of drowsiness detection. 
+• Alert Generation: The system shall provide appropriate visual, auditory, and haptic alerts 
+according to the severity of drowsiness. 
+• Safety Intervention: In critical situations, the system shall support safety actions such as 
+continuous alarms, hazard-light activation, and Emergency Stop Assist. 
+ 
+ 
+2. 
+Non-Functional Requirements 
+• Performance: The system shall operate in real time with a target processing latency of less than 
+100 ms. 
+• Reliability: The system shall remain functional even if one sensor or monitoring pathway becomes 
+unavailable by using alternative sensing methods. 
+• Privacy and Security: Raw video and physiological data shall be processed locally and shall not 
+be externally transmitted without explicit user consent. 
+• Usability: The interface shall be simple, clear, and easily understandable within a short glance to 
+minimize driver distraction. 
+• Multi-sensory Feedback: The system shall use synchronized visual, auditory, and haptic feedback 
+to effectively communicate different levels of warning. 
+ 
+ 
+
+--- Page 16 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+15 
+An analysis of the surveyed literature reveals four primary research gaps in current driver drowsiness 
+detection methodologies, spanning environmental robustness, deployment constraints, processing 
+latency, and sensor dependency. 
+ 
+ 
+Identification of Research Gaps 
+ 
+• Environmental Robustness and Generalisability: Vision-based systems frequently struggle to 
+maintain high accuracy when transitioning from controlled datasets to highly variable real-world 
+lighting conditions and facial occlusions. Achieving robust real-time estimation of physical indicators 
+like PERCLOS under adverse lighting or when a driver wears sunglasses remains a persistent challenge 
+[8], [14], [15]. Furthermore, many CNN-based drowsiness classifiers, including those employing 
+Vision Transformer architectures, are trained on a narrow set of benchmarks and exhibit performance 
+degradation when encountering driver demographics, camera angles, or illumination conditions not 
+represented in the training data [1], [18], [21]. 
+• Ecological Validity and Intrusiveness: A large proportion of physiological monitoring research is 
+conducted in driving simulators due to safety and logistical constraints, limiting the ecological validity 
+of the findings [9], [12]. Transitioning these systems to real-road deployment introduces non-linearity, 
+temporal instability, and motion artefacts that simulator data cannot adequately represent [5]. The use 
+of intrusive EEG and ECG wearables further restricts practical adoption in consumer vehicles, even as 
+lightweight behind-the-ear EEG solutions represent a step toward resolving the intrusiveness gap [17]. 
+Unresolved physiological markers such as slow-wave activity (SWA) remain difficult to validate 
+outside the laboratory [12]. 
+• Real-Time Edge Computation Constraints: Balancing high classification accuracy with the strict 
+low-latency requirements of edge computing is a persistent engineering challenge. While complex 
+deep learning models including multi-scale CNNs and Vision Transformers provide excellent detection 
+rates in offline testing, their computational weight can delay life-saving interventions in the vehicle 
+[1], [13], [16]. Specialised lightweight architectures, such as hybrid F-LSNN networks, TinyML-
+
+--- Page 17 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+16 
+optimised EEG classifiers, and TensorFlow Lite-converted CNNs, are required to address this gap by 
+keeping inference times strictly under 100 milliseconds [2], [3], [17]. 
+• Single-Sensor Dependency and Multi-Modal Fusion: Many current systems rely heavily on a single 
+monitoring channel, leaving them vulnerable to false alarms or missed detections when that sensor 
+fails or encounters interference [7], [14]. Systematic reviews confirm that fusing multiple biological, 
+behavioural, and vehicular signals significantly improves overall detection accuracy and reliability 
+[11], [12]. However, practical frameworks that successfully integrate and synchronise these disparate 
+modalities without relying on a single point of failure and while meeting latency budgets remain under-
+tested in real-world scenarios [1], [19], [20]. 
+ 
+The proposed multi-modal architecture directly targets these gaps by combining behavioral, vehicular, 
+and physiological pathways into a cohesive, redundant system. By processing raw video and biometric 
+telemetry locally via an optimized edge AI stack, the system addresses both the latency constraints and 
+the privacy and intrusiveness concerns prevalent in the surveyed literature [1], [2], [10].  
+ 
+ 
+
+--- Page 18 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+17 
+List of Abbreviations 
+Abbreviation 
+Full Form 
+Abbreviation 
+Full Form 
+ADAS 
+Advanced Driver Assistance 
+Systems 
+ViT 
+Vision Transformer 
+WebGL 
+Web Graphics Library 
+AIoT 
+Artificial Intelligence of 
+Things 
+YOLO 
+You Only Look Once 
+SVM 
+Support Vector Machine 
+CAN 
+Controller Area Network 
+CNN 
+Convolutional Neural 
+Network 
+TinyML 
+Tiny Machine Learning 
+EEG 
+Electroencephalogram / 
+Electroencephalography 
+EAR 
+Eye Aspect Ratio 
+ECG 
+Electrocardiogram / 
+Electrocardiography 
+EOG 
+Electrooculogram / 
+Electrooculography 
+EPS 
+Electric Power Steering 
+SWA 
+Steering Wheel Angle 
+FFT 
+Fast Fourier Transform 
+HRV 
+Heart Rate Variability 
+FPS 
+Frames Per Second 
+F-LSNN 
+Fuzzy Logic-based LSTM 
+Neural Network 
+GDPR 
+General Data Protection 
+Regulation 
+GSR 
+Galvanic Skin Response 
+HMI 
+Human-Machine Interface 
+IoT 
+Internet of Things 
+IR 
+Infrared 
+JSON 
+JavaScript Object Notation 
+KNN 
+K-Nearest Neighbours 
+LSTM 
+Long Short-Term Memory 
+MAR 
+Mouth Aspect Ratio 
+PERCLOS 
+Percentage of Eye Closure 
+over Time 
+PPG 
+Photoplethysmography 
+QML 
+Qt Meta-Object Language 
+RAG 
+Retrieval-Augmented 
+Generation 
+ROS 
+Robot Operating System 
+ 
+ 
+ 
+ 
+
+--- Page 19 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+18 
+References: (IEEE format) 
+[1]  A. Sah, M. Das, A. K. Sony, B. Acharya, A. D. Deferisha, and A. Swetapadma, "An approach for 
+identification of driver drowsiness, emotion state, and behavior patterns based on vision transformers, 
+CNN and multi-modal sensor fusion using RAG-based interpretability," Discover Computing, vol. 29, no. 
+1, art. 341, 2026. 
+[2]  [Author(s) not confirmed], "AIoT-based drowsiness level detection system using a hybrid F-LSNN 
+network," ScienceDirect (article ID S1110866526000277), 2026. [Verify authors/journal before final 
+submission.] 
+[3]  S. Seo, "Development of Drowsy Driving Detection System Using EEG," Tehnički glasnik, vol. 20, 
+no. 1, pp. 86–93, 2026. 
+[4]  I. Mahfudi, M. A. J. Rasyid, Adzikirani, M. Kusumawardani, F. A. Soelistianto, R. A. Wijayanti, and 
+A. Novianti, "Development of a Driver Drowsiness Detection System Using YOLO, EAR, and MAR for 
+Driving Performance Evaluation," ILKOMNIKA, vol. 8, no. 2, pp. 206–219, 2026. 
+[5]  Z. Li, S. E. Li, R. Li, B. Cheng, and J. Shi, "Online Detection of Driver Fatigue Using Steering Wheel 
+Angles for Real Driving Conditions," Sensors, vol. 17, no. 3, art. 495, 2017. 
+[6]  Y. Saito, M. Itoh, and T. Inagaki, "Driver Assistance System With a Dual Control Scheme: 
+Effectiveness of Identifying Driver Drowsiness and Preventing Lane Departure Accidents," IEEE 
+Transactions on Human-Machine Systems, vol. 46, no. 5, pp. 660–671, 2016. 
+[7]  [Author(s) not confirmed], "Intelligent Automation of Driver Behavior Analysis Using Machine 
+Learning: CAN Bus Signals," IEEE Xplore (document ID 11155542), 2025. [Verify authors/venue before 
+final submission.] 
+[8]  I. García, S. Bronte, L. M. Bergasa, J. Almazán, and J. Yebes, "Vision-based drowsiness detector for 
+real driving conditions," in Proc. IEEE Intelligent Vehicles Symposium (IV), Alcalá de Henares, Spain, 
+2012, pp. 618–623. 
+[9]  C. Zeng, Z. Mu, and Q. Wang, "Classifying Driving Fatigue by Using EEG Signals," Computational 
+Intelligence and Neuroscience, vol. 2022, art. 1885677, 2022. 
+[10]  L. El Sahmarany, M. Alkhaldi, and S. I. Alzahrani, "Sensing Technologies and Physiological 
+Parameters for Real-Time Driver Drowsiness Detection: A Comprehensive Review," Sensors, vol. 26, no. 
+11, art. 3333, 2026. 
+[11]  S. F. Abdul Razak, S. Yogarayan, A. Abdul Aziz, M. F. A. Abdullah, and N. H. Kamis, 
+"Physiological-based Driver Monitoring Systems: A Scoping Review," Civil Engineering Journal, vol. 8, 
+no. 12, pp. 3952–3967, 2022. 
+
+--- Page 20 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+19 
+[12]  A. A. Saleem, H. U. R. Siddiqui, M. A. Raza, F. Rustam, S. Dudley, and I. Ashraf, "A systematic 
+review of physiological signals based driver drowsiness detection systems," Cognitive Neurodynamics, 
+vol. 17, no. 5, pp. 1229–1259, 2022. 
+[13]  M. Ngxande, J.-R. Tapamo, and M. Burke, "Driver drowsiness detection using Behavioral measures 
+and machine learning techniques: A review of state-of-art techniques," in Proc. Pattern Recognition 
+Association of South Africa and Robotics and Mechatronics Conf. (PRASA-RobMech), Bloemfontein, 
+South Africa, 2017. 
+[14]  W. Deng and R. Wu, "Real-Time Driver-Drowsiness Detection System Using Facial Features," IEEE 
+Access, vol. 7, pp. 118727–118738, 2019. 
+[15]  S. Junaedi, "Driver Drowsiness Detection Based on Face Feature and PERCLOS," Journal of 
+Physics: Conference Series, vol. 1090, art. 012037, 2018. 
+[16]  F. Safarov, F. Akhmedov, A. B. Abdusalomov, R. Nasimov, and Y. I. Cho, "Real-Time Deep 
+Learning-Based Drowsiness Detection: Leveraging Computer-Vision and Eye-Blink Analyses for 
+Enhanced Road Safety," Sensors, vol. 23, no. 14, art. 6459, 2023. 
+[17] H.-T. Nguyen, N.-D. Mai, B. G. Lee, and W.-Y. Chung, "Behind-the-ear EEG-based wearable driver 
+drowsiness detection system using embedded tiny neural networks," Sensors, vol. 23, no. 19, pp. 23875-
+23892, 2023. 
+[18] A. A. Minhas, S. Jabbar, M. Farhan, and M. Najam ul Islam, "A smart analysis of driver fatigue and 
+drowsiness detection using convolutional neural networks," Neural Computing and Applications, vol. 81, 
+no. 19, pp. 26969-26986, 2022. 
+[19] O. S. Jayalath, "Multimodal Driver Drowsiness Detection Using Pre-Aggregated Behavioral and 
+Physiological Embeddings," IEEE Transactions on Intelligent Vehicles, vol. 9, no. 4, pp. 1024-1035, 
+2024. 
+[20] Abhirami A., Kiran J. K., M. I. Niyas, P. Jude, and S. S., "Multimodal Driver Drowsiness Detection 
+Using Visual and EEG Data with CNN-LSTM and Attention-Based Fusion," Zenodo, 2025. 
+[21] V. U. Maheswari, R. Aluvalu, M. P. Kantipudi, K. K. Chennam, K. Kotecha, and J. R. Saini, "Driver 
+drowsiness prediction based on multiple aspects using image processing techniques," Electronics, vol. 10, 
+no. 54, pp. 54980-54990, 2022. 
+ 
+
+--- Page 21 ---
+Drowsy Detection System 
+Dept of AI & ML, BMSIT&M 
+2026 
+20 
+Bibliography: 
+ 
+ 
+1. https://link.springer.com/article/10.1007/s10791-026-10217-7 
+2. https://www.sciencedirect.com/science/article/pii/S1110866526000277 
+3. https://hrcak.srce.hr/en/344759 
+4. http://journal.unublitar.ac.id/ilkomnika/index.php/ilkomnika/article/view/878 
+5. https://mdpi-res.com/d_attachment/sensors/sensors-17-00495/article_deploy/sensors-17-
+00495-v2.pdf?version=1488529509 
+6. https://ieeexplore.ieee.org/abstract/document/7460119 
+7. https://ieeexplore.ieee.org/abstract/document/11155542 
+8. https://ieeexplore.ieee.org/abstract/document/6232222 
+9. https://pmc.ncbi.nlm.nih.gov/articles/PMC8970926/ 
+10. https://www.mdpi.com/1424-8220/26/11/3333 
+11. https://www.researchgate.net/publication/367002207_Physiological-
+based_Driver_Monitoring_Systems_A_Scoping_Review 
+12. https://pmc.ncbi.nlm.nih.gov/articles/PMC10542071/ 
+13. https://www.academia.edu/108851960/Driver_drowsiness_detection_using_behavioral_meas
+ures_and_machine_learning_techniques_A_review_of_state_of_art_techniques 
+14. https://ieeexplore.ieee.org/ielx7/6287639/8600701/08808931.pdf?tp=&arnumber=8808931&
+isnumber=8600701&ref=aHR0cHM6Ly9zY2hvbGFyLmdvb2dsZS5jb20v 
+15. https://iopscience.iop.org/article/10.1088/1742-6596/1090/1/012037/pdf 
+16. https://mdpi-res.com/d_attachment/sensors/sensors-23-06459/article_deploy/sensors-23-
+06459-v2.pdf?version=1693989205 
+17. https://ieeexplore.ieee.org/abstract/document/8704263 
+18. https://www.cscjournals.org/library/manuscriptinfo.php?mc=IJIP-1194 
+19. https://rosap.ntl.bts.gov/view/dot/15347 
+20. https://ieeexplore.ieee.org/abstract/document/9089484 
+21. https://www.mdpi.com/1424-8220/21/5/1734 
+ 
