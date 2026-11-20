@@ -1,0 +1,90 @@
+# topics.yaml
+# Defines all message topics, publication rates, and QoS settings.
+# READ-ONLY after Phase 0 freeze. Changes require PR approved by all four owners.
+#
+# topic: message bus topic name (ROS 2 topic or ZMQ channel)
+# schema: corresponding JSON schema filename in contracts/schemas/
+# publisher: folder that owns this topic
+# rate_hz: nominal publication rate (0 = event-driven)
+# qos_depth: message queue depth (ROS 2 QoS history depth)
+# qos_reliability: reliable | best_effort
+# qos_durability: volatile | transient_local
+
+topics:
+
+  - topic: /drowsy/behavior
+    schema: BehaviorFeatures.json
+    publisher: 01_behavioral_vision
+    rate_hz: 30
+    qos_depth: 5
+    qos_reliability: best_effort
+    qos_durability: volatile
+    description: >
+      Behavioural monitoring output: EAR, PERCLOS, MAR, gaze, head pose,
+      behavior_score. Published for every processed camera frame.
+
+  - topic: /drowsy/vehicle
+    schema: VehicleFeatures.json
+    publisher: 02_vehicle_physiological
+    rate_hz: 20
+    qos_depth: 5
+    qos_reliability: best_effort
+    qos_durability: volatile
+    description: >
+      Vehicle-based monitoring output: SWA, ApEn, DTW distances, lane offset,
+      weaving index, vehicle_score. Sourced from EPS/CAN simulator or real bus.
+
+  - topic: /drowsy/physio
+    schema: PhysioFeatures.json
+    publisher: 02_vehicle_physiological
+    rate_hz: 1
+    qos_depth: 2
+    qos_reliability: best_effort
+    qos_durability: volatile
+    description: >
+      Physiological monitoring output: EEG theta/alpha, HRV. available=false
+      when physio.enabled=false. Optional pathway.
+
+  - topic: /drowsy/fusion
+    schema: FusionOutput.json
+    publisher: 03_fusion_edge_platform
+    rate_hz: 10
+    qos_depth: 5
+    qos_reliability: reliable
+    qos_durability: volatile
+    description: >
+      Multi-modal fusion result: 4-level drowsiness classification, dynamic
+      weights, degraded_mode, total_latency_ms. Primary downstream topic.
+
+  - topic: /drowsy/alert
+    schema: AlertCommand.json
+    publisher: 03_fusion_edge_platform
+    rate_hz: 0
+    qos_depth: 10
+    qos_reliability: reliable
+    qos_durability: transient_local
+    description: >
+      Event-driven alert command. Emitted by intervention state machine on
+      tier change. Consumed by HMI, audio, haptic, and actuator simulators.
+
+  - topic: /drowsy/status
+    schema: SystemStatus.json
+    publisher: 03_fusion_edge_platform
+    rate_hz: 1
+    qos_depth: 1
+    qos_reliability: reliable
+    qos_durability: transient_local
+    description: >
+      System health heartbeat: pathway status, consent, FPS, CPU, model versions.
+      Drives the HMI status glyph and degraded-mode indicator.
+
+  - topic: /drowsy/telemetry
+    schema: TelemetryEvent.json
+    publisher: 04_hmi_alerts_fleet
+    rate_hz: 0
+    qos_depth: 20
+    qos_reliability: reliable
+    qos_durability: volatile
+    description: >
+      Opt-in fleet telemetry event. Only published when consent.telemetry_opt_in=true.
+      Contains NO raw biometrics. Forwarded to local MQTT broker → InfluxDB → Node.js API.

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "TelemetryEvent",
+  "title": "TelemetryEvent",
+  "description": "Opt-in fleet telemetry event. Contains NO raw biometrics. Only emitted after explicit driver consent (telemetry_opt_in=true).",
+  "type": "object",
+  "required": ["ts", "seq", "vehicle_id", "event_type", "tier", "duration_s"],
+  "properties": {
+    "ts":          { "type": "number",  "description": "Epoch timestamp in milliseconds" },
+    "seq":         { "type": "integer", "description": "Monotonically increasing sequence number" },
+    "vehicle_id":  { "type": "string",  "description": "Anonymised vehicle identifier (not PII)" },
+    "event_type":  { "type": "string",  "enum": ["drowsiness_event", "pathway_degraded", "recovery"], "description": "Type of telemetry event" },
+    "tier":        { "type": "integer", "enum": [0, 1, 2, 3], "description": "Maximum drowsiness tier reached in this event" },
+    "duration_s":  { "type": "number",  "minimum": 0, "description": "Duration of the event in seconds" }
+  },
+  "additionalProperties": false,
+  "_privacy_note": "This schema intentionally excludes raw EAR/MAR/PERCLOS/EEG/ECG values. Only aggregate event metadata is transmitted."
+}

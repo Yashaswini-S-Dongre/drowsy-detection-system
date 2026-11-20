@@ -1,0 +1,24 @@
+{
+  "_comment": "Golden sample – AlertCommand Tier 3 (Critical). Used by HMI screenshot tests.",
+  "ts": 1727600063100,
+  "seq": 42,
+  "timestamp": 1727600063100,
+  "tier": 3,
+  "visual": {
+    "color": "#ef4444",
+    "message": "⚠ CRITICAL – PULL OVER NOW",
+    "animation": "tier3_pulse_red.json"
+  },
+  "audio": {
+    "type": "alarm_continuous",
+    "volume": 1.0
+  },
+  "haptic": {
+    "pattern": "continuous",
+    "intensity": 1.0
+  },
+  "seatbelt_tighten": true,
+  "hazard_lights": true,
+  "emergency_stop_assist": true,
+  "rest_break_prompt": true
+}

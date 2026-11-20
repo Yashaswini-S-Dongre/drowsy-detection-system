@@ -1,0 +1,20 @@
+{
+  "_comment": "Golden sample – SystemStatus at 1 Hz. Healthy state.",
+  "ts": 1727600063000,
+  "seq": 1024,
+  "pathway_health": {
+    "behavior": "ok",
+    "vehicle": "ok",
+    "physio": "disabled"
+  },
+  "consent": {
+    "telemetry_opt_in": true
+  },
+  "fps": 29.8,
+  "cpu_pct": 45.2,
+  "model_versions": {
+    "behavioral": "v1.2.0-int8",
+    "vehicle": "svm-rbf-v0.9",
+    "fusion": "attention-cnn-lstm-v2.0"
+  }
+}

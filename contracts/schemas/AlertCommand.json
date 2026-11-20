@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "AlertCommand",
+  "title": "AlertCommand",
+  "description": "Event emitted by the intervention state machine. Tier 0 = no alert (dark UI). Tier 1/2/3 correspond to Mild/Moderate/Critical levels.",
+  "type": "object",
+  "required": [
+    "ts", "seq", "tier",
+    "visual", "audio", "haptic",
+    "seatbelt_tighten", "hazard_lights", "emergency_stop_assist",
+    "rest_break_prompt", "timestamp"
+  ],
+  "properties": {
+    "ts":        { "type": "number",  "description": "Epoch timestamp in milliseconds" },
+    "seq":       { "type": "integer", "description": "Monotonically increasing sequence number" },
+    "timestamp": { "type": "number",  "description": "Alias for ts, for HMI convenience" },
+    "tier": {
+      "type": "integer",
+      "enum": [0, 1, 2, 3],
+      "description": "0=no alert, 1=early warning, 2=moderate, 3=critical"
+    },
+    "visual": {
+      "type": "object",
+      "required": ["color", "message", "animation"],
+      "properties": {
+        "color":     { "type": "string", "description": "CSS/hex color or semantic name (e.g. '#22c55e', 'amber', 'red')" },
+        "message":   { "type": "string", "description": "Short driver-facing text (≤40 chars, glanceable)" },
+        "animation": { "type": "string", "description": "Lottie JSON filename (from hmi_qml/animations/) or 'none'" }
+      },
+      "additionalProperties": false
+    },
+    "audio": {
+      "type": "object",
+      "required": ["type", "volume"],
+      "properties": {
+        "type":   { "type": "string", "enum": ["none", "chime", "alarm_continuous"], "description": "Audio pattern to play" },
+        "volume": { "type": "number", "minimum": 0, "maximum": 1, "description": "Volume 0–1" }
+      },
+      "additionalProperties": false
+    },
+    "haptic": {
+      "type": "object",
+      "required": ["pattern", "intensity"],
+      "properties": {
+        "pattern":   { "type": "string", "enum": ["none", "subtle_pulse", "strong_pulse", "continuous"], "description": "Haptic pattern" },
+        "intensity": { "type": "number", "minimum": 0, "maximum": 1, "description": "Haptic intensity 0–1" }
+      },
+      "additionalProperties": false
+    },
+    "seatbelt_tighten":       { "type": "boolean", "description": "Activate seatbelt pre-tensioner (Tier 2+)" },
+    "hazard_lights":          { "type": "boolean", "description": "Activate hazard lights (Tier 3 only)" },
+    "emergency_stop_assist":  { "type": "boolean", "description": "Trigger ESA (Tier 3 only)" },
+    "rest_break_prompt":      { "type": "boolean", "description": "Show rest-break dialog (Tier 2+)" }
+  },
+  "additionalProperties": false
+}

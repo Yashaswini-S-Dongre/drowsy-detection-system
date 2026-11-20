@@ -1,0 +1,13 @@
+{
+  "_comment": "Golden sample – PhysioFeatures disabled (physio.enabled=false)",
+  "ts": 1727600000000,
+  "seq": 1,
+  "available": false,
+  "theta_alpha_ratio": 0.0,
+  "beta_power": 0.0,
+  "hr_bpm": 0.0,
+  "hrv_rmssd": 0.0,
+  "hrv_lf_hf": 0.0,
+  "quality": 0.0,
+  "physio_score": 0.0
+}

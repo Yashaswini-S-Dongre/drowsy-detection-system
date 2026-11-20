@@ -1,0 +1,31 @@
+{
+  "_comment": "Golden sample – BehaviorFeatures at ALERT state (healthy, face detected, all metrics normal)",
+  "ts": 1727600000000,
+  "seq": 1,
+  "frame_id": 1000,
+  "face_detected": true,
+  "quality": 0.95,
+  "ear_left": 0.32,
+  "ear_right": 0.31,
+  "ear_mean": 0.315,
+  "blink_rate_per_min": 15.0,
+  "blink_duration_ms": 200.0,
+  "perclos_60s": 0.05,
+  "mar": 0.35,
+  "yawn_active": false,
+  "yawn_count_5min": 0,
+  "gaze_yaw": 2.1,
+  "gaze_pitch": -1.5,
+  "gaze_off_road_ratio": 0.02,
+  "head_pitch": -3.0,
+  "head_yaw": 1.8,
+  "head_roll": 0.5,
+  "head_nod_event": false,
+  "behavior_score": 0.08,
+  "stage_latency_ms": {
+    "capture": 5.2,
+    "landmarks": 12.1,
+    "features": 6.8,
+    "model": 11.4
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "BehaviorFeatures",
+  "title": "BehaviorFeatures",
+  "description": "Behavioural monitoring output published at ~30 Hz by 01_behavioral_vision.",
+  "type": "object",
+  "required": [
+    "ts", "seq", "frame_id", "face_detected", "quality",
+    "ear_left", "ear_right", "ear_mean",
+    "blink_rate_per_min", "blink_duration_ms", "perclos_60s",
+    "mar", "yawn_active", "yawn_count_5min",
+    "gaze_yaw", "gaze_pitch", "gaze_off_road_ratio",
+    "head_pitch", "head_yaw", "head_roll", "head_nod_event",
+    "behavior_score", "stage_latency_ms"
+  ],
+  "properties": {
+    "ts":                  { "type": "number",  "description": "Epoch timestamp in milliseconds" },
+    "seq":                 { "type": "integer", "description": "Monotonically increasing sequence number" },
+    "frame_id":            { "type": "integer", "description": "Camera frame index" },
+    "face_detected":       { "type": "boolean", "description": "True if a face was successfully detected" },
+    "quality":             { "type": "number",  "minimum": 0, "maximum": 1, "description": "Frame/detection quality (0=unusable, 1=perfect)" },
+    "ear_left":            { "type": "number",  "minimum": 0, "description": "Eye Aspect Ratio – left eye" },
+    "ear_right":           { "type": "number",  "minimum": 0, "description": "Eye Aspect Ratio – right eye" },
+    "ear_mean":            { "type": "number",  "minimum": 0, "description": "Mean EAR across both eyes" },
+    "blink_rate_per_min":  { "type": "number",  "minimum": 0, "description": "Blink frequency over trailing 60 s window" },
+    "blink_duration_ms":   { "type": "number",  "minimum": 0, "description": "Duration of the most recent blink (ms)" },
+    "perclos_60s":         { "type": "number",  "minimum": 0, "maximum": 1, "description": "PERCLOS – fraction of time eyes ≥80% closed over 60 s window" },
+    "mar":                 { "type": "number",  "minimum": 0, "description": "Mouth Aspect Ratio" },
+    "yawn_active":         { "type": "boolean", "description": "True if a yawn is currently in progress" },
+    "yawn_count_5min":     { "type": "integer", "minimum": 0, "description": "Number of yawns in the trailing 5-minute window" },
+    "gaze_yaw":            { "type": "number",  "description": "Horizontal gaze deviation (degrees)" },
+    "gaze_pitch":          { "type": "number",  "description": "Vertical gaze deviation (degrees)" },
+    "gaze_off_road_ratio": { "type": "number",  "minimum": 0, "maximum": 1, "description": "Fraction of last 10 s where gaze was off-road" },
+    "head_pitch":          { "type": "number",  "description": "Head pitch angle (degrees; positive = forward droop)" },
+    "head_yaw":            { "type": "number",  "description": "Head yaw angle (degrees)" },
+    "head_roll":           { "type": "number",  "description": "Head roll angle (degrees)" },
+    "head_nod_event":      { "type": "boolean", "description": "True if a sudden head-nod (micro-sleep drop) was detected" },
+    "behavior_score":      { "type": "number",  "minimum": 0, "maximum": 1, "description": "Composite behavioural drowsiness score (0=alert, 1=critical)" },
+    "stage_latency_ms": {
+      "type": "object",
+      "description": "Per-stage processing latency breakdown",
+      "required": ["capture", "landmarks", "features", "model"],
+      "properties": {
+        "capture":   { "type": "number", "minimum": 0 },
+        "landmarks": { "type": "number", "minimum": 0 },
+        "features":  { "type": "number", "minimum": 0 },
+        "model":     { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "VehicleFeatures",
+  "title": "VehicleFeatures",
+  "description": "Vehicle-based monitoring output published at ~20 Hz by 02_vehicle_physiological.",
+  "type": "object",
+  "required": [
+    "ts", "seq",
+    "swa_deg", "swa_rate", "micro_correction_rate",
+    "swa_approx_entropy", "dtw_dist_awake", "dtw_dist_drowsy",
+    "lane_offset_m", "lane_departure_count", "weaving_index",
+    "lane_confidence", "speed_kph", "road_curvature",
+    "quality", "vehicle_score"
+  ],
+  "properties": {
+    "ts":                    { "type": "number",  "description": "Epoch timestamp in milliseconds" },
+    "seq":                   { "type": "integer", "description": "Monotonically increasing sequence number" },
+    "swa_deg":               { "type": "number",  "description": "Steering Wheel Angle (degrees)" },
+    "swa_rate":              { "type": "number",  "description": "Rate of change of SWA (deg/s)" },
+    "micro_correction_rate": { "type": "number",  "minimum": 0, "description": "Number of micro-corrections per minute" },
+    "swa_approx_entropy":    { "type": "number",  "minimum": 0, "description": "Approximate entropy of the SWA time series (higher=more irregular)" },
+    "dtw_dist_awake":        { "type": "number",  "minimum": 0, "description": "DTW distance from reference 'awake' SWA template" },
+    "dtw_dist_drowsy":       { "type": "number",  "minimum": 0, "description": "DTW distance from reference 'drowsy' SWA template" },
+    "lane_offset_m":         { "type": "number",  "description": "Lateral offset from lane centre (metres; positive=right)" },
+    "lane_departure_count":  { "type": "integer", "minimum": 0, "description": "Number of lane-departure events in last 60 s" },
+    "weaving_index":         { "type": "number",  "minimum": 0, "description": "Standard deviation of lane offset over 30 s window" },
+    "lane_confidence":       { "type": "number",  "minimum": 0, "maximum": 1, "description": "Lane detection confidence (0=no lane found, 1=perfect)" },
+    "speed_kph":             { "type": "number",  "minimum": 0, "description": "Vehicle speed (km/h)" },
+    "road_curvature":        { "type": "number",  "description": "Estimated road curvature (1/m; 0=straight)" },
+    "quality":               { "type": "number",  "minimum": 0, "maximum": 1, "description": "Overall pathway quality/confidence" },
+    "vehicle_score":         { "type": "number",  "minimum": 0, "maximum": 1, "description": "Composite vehicle-based drowsiness score (0=alert, 1=critical)" }
+  },
+  "additionalProperties": false
+}

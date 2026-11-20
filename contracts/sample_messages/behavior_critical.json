@@ -1,0 +1,31 @@
+{
+  "_comment": "Golden sample – BehaviorFeatures at CRITICAL drowsy state (micro-sleep event)",
+  "ts": 1727600060000,
+  "seq": 1800,
+  "frame_id": 3800,
+  "face_detected": true,
+  "quality": 0.78,
+  "ear_left": 0.13,
+  "ear_right": 0.12,
+  "ear_mean": 0.125,
+  "blink_rate_per_min": 4.0,
+  "blink_duration_ms": 950.0,
+  "perclos_60s": 0.62,
+  "mar": 0.72,
+  "yawn_active": true,
+  "yawn_count_5min": 6,
+  "gaze_yaw": 18.5,
+  "gaze_pitch": -22.0,
+  "gaze_off_road_ratio": 0.35,
+  "head_pitch": -28.0,
+  "head_yaw": 3.2,
+  "head_roll": -6.1,
+  "head_nod_event": true,
+  "behavior_score": 0.91,
+  "stage_latency_ms": {
+    "capture": 5.5,
+    "landmarks": 14.2,
+    "features": 7.1,
+    "model": 12.9
+  }
+}

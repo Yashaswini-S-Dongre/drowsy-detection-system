@@ -1,0 +1,9 @@
+{
+  "_comment": "Golden sample – TelemetryEvent (opt-in). Contains no raw biometrics.",
+  "ts": 1727600063000,
+  "seq": 15,
+  "vehicle_id": "veh-77x9-beta",
+  "event_type": "drowsiness_event",
+  "tier": 3,
+  "duration_s": 45.5
+}

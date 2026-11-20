@@ -1,0 +1,19 @@
+{
+  "_comment": "Golden sample – VehicleFeatures in drowsy/erratic driving state",
+  "ts": 1727600060000,
+  "seq": 1200,
+  "swa_deg": -12.8,
+  "swa_rate": 28.4,
+  "micro_correction_rate": 4.0,
+  "swa_approx_entropy": 0.38,
+  "dtw_dist_awake": 0.88,
+  "dtw_dist_drowsy": 0.11,
+  "lane_offset_m": 0.62,
+  "lane_departure_count": 3,
+  "weaving_index": 0.44,
+  "lane_confidence": 0.71,
+  "speed_kph": 88.0,
+  "road_curvature": 0.002,
+  "quality": 0.82,
+  "vehicle_score": 0.87
+}

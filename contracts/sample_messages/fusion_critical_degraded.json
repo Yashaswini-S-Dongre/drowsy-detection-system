@@ -1,0 +1,22 @@
+{
+  "_comment": "Golden sample – FusionOutput CRITICAL (level=3), camera blinded (degraded_mode=true), steering-based detection",
+  "ts": 1727600063000,
+  "seq": 630,
+  "level": 3,
+  "drowsiness_score": 0.92,
+  "confidence": 0.87,
+  "per_modality_weights": {
+    "behavior": 0.10,
+    "vehicle": 0.85,
+    "physio": 0.05
+  },
+  "active_pathways": ["vehicle"],
+  "degraded_mode": true,
+  "reason_codes": [
+    "CAMERA_BLINDED",
+    "HIGH_DTW_DROWSY",
+    "LOW_MICRO_CORRECTIONS",
+    "LANE_DEPARTURE_COUNT_3"
+  ],
+  "total_latency_ms": 72.3
+}

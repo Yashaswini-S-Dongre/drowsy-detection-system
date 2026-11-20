@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "FusionOutput",
+  "title": "FusionOutput",
+  "description": "Fusion engine output published at ~10 Hz by 03_fusion_edge_platform. Primary output that drives interventions.",
+  "type": "object",
+  "required": [
+    "ts", "seq", "level", "drowsiness_score", "confidence",
+    "per_modality_weights", "active_pathways",
+    "degraded_mode", "reason_codes", "total_latency_ms"
+  ],
+  "properties": {
+    "ts":               { "type": "number",  "description": "Epoch timestamp in milliseconds" },
+    "seq":              { "type": "integer", "description": "Monotonically increasing sequence number" },
+    "level": {
+      "type": "integer",
+      "enum": [0, 1, 2, 3],
+      "description": "Drowsiness level: 0=Alert, 1=Mild, 2=Moderate, 3=Critical"
+    },
+    "drowsiness_score": { "type": "number",  "minimum": 0, "maximum": 1, "description": "Continuous drowsiness probability (0=fully alert, 1=critical)" },
+    "confidence":       { "type": "number",  "minimum": 0, "maximum": 1, "description": "Fusion model confidence in the classification" },
+    "per_modality_weights": {
+      "type": "object",
+      "description": "Dynamic attention weights for each pathway (sum ≈ 1.0)",
+      "required": ["behavior", "vehicle", "physio"],
+      "properties": {
+        "behavior": { "type": "number", "minimum": 0, "maximum": 1 },
+        "vehicle":  { "type": "number", "minimum": 0, "maximum": 1 },
+        "physio":   { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "active_pathways":  {
+      "type": "array",
+      "items": { "type": "string", "enum": ["behavior", "vehicle", "physio"] },
+      "description": "Currently healthy/contributing pathways"
+    },
+    "degraded_mode":    { "type": "boolean", "description": "True if one or more pathways is compromised" },
+    "reason_codes":     {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Human-readable codes explaining the classification (e.g. HIGH_PERCLOS, LOW_MICRO_CORRECTIONS)"
+    },
+    "total_latency_ms": { "type": "number",  "minimum": 0, "description": "End-to-end camera-frame-to-FusionOutput latency (ms); must be <100 ms at p95" }
+  },
+  "additionalProperties": false
+}

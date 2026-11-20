@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "SystemStatus",
+  "title": "SystemStatus",
+  "description": "System health heartbeat published at 1 Hz by 03_fusion_edge_platform.",
+  "type": "object",
+  "required": [
+    "ts", "seq",
+    "pathway_health", "consent",
+    "fps", "cpu_pct", "model_versions"
+  ],
+  "properties": {
+    "ts":  { "type": "number",  "description": "Epoch timestamp in milliseconds" },
+    "seq": { "type": "integer", "description": "Monotonically increasing sequence number" },
+    "pathway_health": {
+      "type": "object",
+      "required": ["behavior", "vehicle", "physio"],
+      "properties": {
+        "behavior": { "type": "string", "enum": ["ok", "degraded", "failed", "disabled"] },
+        "vehicle":  { "type": "string", "enum": ["ok", "degraded", "failed", "disabled"] },
+        "physio":   { "type": "string", "enum": ["ok", "degraded", "failed", "disabled"] }
+      },
+      "additionalProperties": false
+    },
+    "consent": {
+      "type": "object",
+      "required": ["telemetry_opt_in"],
+      "properties": {
+        "telemetry_opt_in": { "type": "boolean", "description": "True only if driver has explicitly opted in to fleet telemetry" }
+      },
+      "additionalProperties": false
+    },
+    "fps":     { "type": "number",  "minimum": 0, "description": "Current camera processing frame rate" },
+    "cpu_pct": { "type": "number",  "minimum": 0, "maximum": 100, "description": "Overall CPU usage percentage" },
+    "model_versions": {
+      "type": "object",
+      "description": "Version strings for deployed TFLite models",
+      "properties": {
+        "behavioral": { "type": "string" },
+        "vehicle":    { "type": "string" },
+        "physio":     { "type": "string" },
+        "fusion":     { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

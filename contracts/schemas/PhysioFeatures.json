@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "PhysioFeatures",
+  "title": "PhysioFeatures",
+  "description": "Physiological monitoring output published at ~1 Hz by 02_vehicle_physiological. 'available' is false when physio.enabled=false in config.",
+  "type": "object",
+  "required": [
+    "ts", "seq", "available",
+    "theta_alpha_ratio", "beta_power",
+    "hr_bpm", "hrv_rmssd", "hrv_lf_hf",
+    "quality", "physio_score"
+  ],
+  "properties": {
+    "ts":               { "type": "number",  "description": "Epoch timestamp in milliseconds" },
+    "seq":              { "type": "integer", "description": "Monotonically increasing sequence number" },
+    "available":        { "type": "boolean", "description": "False when physio pathway is disabled or sensor is absent" },
+    "theta_alpha_ratio":{ "type": "number",  "minimum": 0, "description": "EEG theta/alpha power ratio (increases with drowsiness)" },
+    "beta_power":       { "type": "number",  "minimum": 0, "description": "EEG beta band absolute power (µV²/Hz)" },
+    "hr_bpm":           { "type": "number",  "minimum": 0, "description": "Heart rate (beats per minute)" },
+    "hrv_rmssd":        { "type": "number",  "minimum": 0, "description": "HRV RMSSD – root mean square of successive RR differences (ms)" },
+    "hrv_lf_hf":        { "type": "number",  "minimum": 0, "description": "HRV LF/HF ratio (autonomic balance)" },
+    "quality":          { "type": "number",  "minimum": 0, "maximum": 1, "description": "Signal quality (0=unusable, 1=clean)" },
+    "physio_score":     { "type": "number",  "minimum": 0, "maximum": 1, "description": "Composite physiological drowsiness score (0=alert, 1=critical); 0 when not available" }
+  },
+  "additionalProperties": false
+}

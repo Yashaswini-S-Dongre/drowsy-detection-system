@@ -1,0 +1,19 @@
+{
+  "_comment": "Golden sample – VehicleFeatures in normal/awake driving state",
+  "ts": 1727600000000,
+  "seq": 1,
+  "swa_deg": 2.5,
+  "swa_rate": 3.1,
+  "micro_correction_rate": 22.0,
+  "swa_approx_entropy": 1.25,
+  "dtw_dist_awake": 0.15,
+  "dtw_dist_drowsy": 0.82,
+  "lane_offset_m": 0.04,
+  "lane_departure_count": 0,
+  "weaving_index": 0.08,
+  "lane_confidence": 0.93,
+  "speed_kph": 90.0,
+  "road_curvature": 0.001,
+  "quality": 0.97,
+  "vehicle_score": 0.07
+}
