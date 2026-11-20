@@ -36,7 +36,7 @@ All audio is synthesized in real-time via **sounddevice** — no pre-recorded fi
 
 ```
 drowsy-detection/
-├── 01_behavioral_vision/         # Webcam / IR camera face analysis
+├── 01_behavioral_vision/         # Webcam face analysis
 │   ├── main.py                   # Entry point: --source webcam|video|synthetic
 │   ├── capture/                  # FrameSource (webcam, video, synthetic modes, IR emulation)
 │   ├── landmarks/                # MediaPipe FaceLandmarker detector
