@@ -21,12 +21,12 @@ Wearables (opt-in)  ──►  Physiological Analysis─┘           ↑       
 
 ### Three-Tier Intervention Protocol
 
-| Tier | Trigger | Visual | Auditory | Haptic | Additional |
-|------|---------|--------|----------|--------|------------|
-| **0** | Monitoring (alert) | Dark UI — driver not distracted | — | — | — |
-| **1** | Early Warning (Mild fatigue) | Amber pulse — *DROWSINESS DETECTED* | — | Subtle vibration (80 Hz) | — |
-| **2** | Moderate Fatigue | Amber — *MODERATE FATIGUE – TAKE A BREAK* | 3-note ascending chime (A4→E5→A5) | Strong pulse (80+120 Hz) | Seatbelt pretensioner |
-| **3** | Critical Danger / Micro-sleep | Red — *⚠ CRITICAL – PULL OVER NOW* | Continuous 2-tone alarm (770/660 Hz) + TTS voice | Continuous aggressive buzz | Hazard lights + ESA trigger |
+| Tier | Trigger | Visual | Auditory | Haptic |
+|------|---------|--------|----------|--------|
+| **0** | Monitoring (alert) | Dark UI — driver not distracted | — | — |
+| **1** | Early Warning (Mild fatigue) | Amber pulse — *DROWSINESS DETECTED* | — | Subtle vibration (80 Hz) |
+| **2** | Moderate Fatigue | Amber — *MODERATE FATIGUE – TAKE A BREAK* | 3-note ascending chime (A4→E5→A5) | Strong pulse (80+120 Hz) |
+| **3** | Critical Danger / Micro-sleep | Red — *⚠ CRITICAL – PULL OVER NOW* | Continuous 2-tone alarm (770/660 Hz) + TTS voice | Continuous aggressive buzz |
 
 All audio is synthesized in real-time via **sounddevice** — no pre-recorded files. Haptic is simulated via low-frequency tones that replicate seat/steering vibration.
 
