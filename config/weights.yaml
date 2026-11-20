@@ -1,0 +1,18 @@
+# weights.yaml
+# Baseline fusion weights (Dynamic weighting will adjust these)
+
+baseline:
+  behavior: 0.60
+  vehicle: 0.40
+  physio: 0.00 # When physio disabled
+
+baseline_with_physio:
+  behavior: 0.45
+  vehicle: 0.35
+  physio: 0.20
+
+# Degraded mode rules (e.g. camera blinded)
+degraded_behavior:
+  behavior: 0.10
+  vehicle: 0.90
+  physio: 0.00

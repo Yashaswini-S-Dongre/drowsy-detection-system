@@ -1,0 +1,15 @@
+# privacy.yaml
+# Privacy and telemetry settings
+
+data_retention:
+  # Do not write raw video or physio data to disk
+  write_raw_video: false
+  write_raw_physio: false
+  # Ring buffer sizes in memory
+  video_buffer_frames: 300
+  
+telemetry:
+  # Must be explicitly set to true by user through HMI consent dialog
+  opt_in_default: false
+  # What gets logged to the local audit file
+  audit_log_enabled: true

@@ -1,0 +1,38 @@
+# default.yaml
+# Main system configuration
+
+system:
+  middleware: "zmq" # options: "ros2", "zmq"
+  debug_mode: true
+  log_level: "INFO"
+  zmq_broker_host: "localhost"  # Host where the ZMQ broker (zmq_broker.py) is running
+  zmq_subscriber_port: 5555  # Subscribers connect to broker XPUB socket on this port
+  zmq_publisher_port: 5556   # Publishers connect to broker XSUB socket on this port
+
+paths:
+  models_dir: "../models"
+  logs_dir: "../logs"
+
+# Person 1: Behavioral
+behavioral:
+  source: "webcam" # options: "webcam", "video", "synthetic"
+  video_path: ""
+  fps_target: 30
+  landmark_backend: "mediapipe" # options: "mediapipe", "dlib"
+  ir_emulation_enabled: true
+
+# Person 2: Vehicle & Physio
+vehicle:
+  simulator_mode: true
+  fps_target: 20
+  
+physio:
+  enabled: false # Optional pathway, disabled by default
+  simulator_mode: true
+  fps_target: 1
+
+# Person 4: Fleet Telemetry
+fleet:
+  mqtt_broker: "localhost"
+  mqtt_port: 1883
+  aws_iot_enabled: false
