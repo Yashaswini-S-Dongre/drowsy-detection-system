@@ -2,7 +2,7 @@
 # Main system configuration
 
 system:
-  middleware: "zmq" # options: "ros2", "zmq"
+  middleware: "zmq"
   debug_mode: true
   log_level: "INFO"
   zmq_broker_host: "localhost"  # Host where the ZMQ broker (zmq_broker.py) is running
